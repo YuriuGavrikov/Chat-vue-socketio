@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { io } from "socket.io-client";
 
-const socket = io("ws://212.60.21.130");
+const socket = io("wss://212.60.21.130");
 
 const messages = ref([]);
 const value = ref("");
