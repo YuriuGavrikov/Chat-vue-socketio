@@ -1,12 +1,29 @@
-<script setup>
-import Chat from "./components/Chat.vue";
-</script>
-
 <template>
-	<div class="container">
-		<div class="my-4 mx-auto text-center fs-2">Friends Chat</div>
-		<Chat />
+	<div class="wrapper">
+		<Header />
+		<Chat v-if="chatStore.connected" />
+		<FormRegistration v-if="!chatStore.connected" />
+		<FormMessage v-else />
 	</div>
 </template>
 
-<style scoped></style>
+<script setup>
+import Header from "./components/Header.vue";
+import FormRegistration from "./components/FormRegistration.vue";
+import FormMessage from "./components/FormMessage.vue";
+import Chat from "./components/Chat.vue";
+
+import { useChatStore } from "./stores/chatStore";
+const chatStore = useChatStore();
+</script>
+
+<style lang="scss" scoped>
+.wrapper {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+}
+</style>
