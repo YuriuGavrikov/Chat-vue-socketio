@@ -57,7 +57,9 @@ const props = defineProps({
 
 	.name {
 		font-size: 14px;
+		font-weight: 700;
 		margin: 0 0 5px 0;
+		color: rgb(190, 0, 0);
 	}
 	.message {
 		font-size: 16px;

@@ -21,7 +21,7 @@ const props = defineProps({
 	border: solid rgb(196, 196, 196) 1px;
 	border-radius: 5px;
 	&:hover {
-		background: #fafafa;
+		background: rgb(243, 245, 251);
 	}
 }
 </style>

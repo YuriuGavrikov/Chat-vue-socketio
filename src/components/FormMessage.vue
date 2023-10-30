@@ -1,18 +1,18 @@
 <template>
 	<div class="formMessage">
 		<textarea
-			v-model="chatStore.value"
+			v-model="chatStore.valueInput"
 			@keypress.enter="chatStore.sendMessage"
 			class="inputFormMessage"
 			placeholder="Введите сообщение"
 			type="text"
 		/>
-		<Button :foo="chatStore.sendMessage">Отправить</Button>
+		<TheButton :foo="chatStore.sendMessage">Отправить</TheButton>
 	</div>
 </template>
 
 <script setup>
-import Button from "./Button.vue";
+import TheButton from "./TheButton.vue";
 
 import { useChatStore } from "../stores/chatStore";
 const chatStore = useChatStore();
@@ -26,7 +26,7 @@ const chatStore = useChatStore();
 
 	width: 100%;
 
-	padding: 5px 5px;
+	margin-top: 10px;
 }
 .inputFormMessage {
 	height: 40px;

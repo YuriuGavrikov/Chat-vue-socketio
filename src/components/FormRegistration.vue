@@ -7,12 +7,12 @@
 			placeholder="Ваше имя"
 			type="text"
 		/>
-		<Button :foo="chatStore.connect">Войти</Button>
+		<TheButton :foo="chatStore.connect">Войти</TheButton>
 	</div>
 </template>
 
 <script setup>
-import Button from "./Button.vue";
+import TheButton from "./TheButton.vue";
 
 import { useChatStore } from "../stores/chatStore";
 const chatStore = useChatStore();

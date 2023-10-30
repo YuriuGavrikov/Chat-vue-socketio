@@ -7,7 +7,7 @@ export const useChatStore = defineStore("chatStore", () => {
 	// const socket = io("ws://localhost:3030");
 
 	const messages = ref([]);
-	const value = ref("");
+	const valueInput = ref("");
 	const username = ref("");
 	const connected = ref(false);
 
@@ -16,25 +16,28 @@ export const useChatStore = defineStore("chatStore", () => {
 	});
 
 	const connect = () => {
-		connected.value = true;
-
-		socket.emit("message", {
-			event: "connection",
-			username: username.value,
-			id: Date.now(),
-		});
+		if (username.value !== "") {
+			connected.value = true;
+			console.log(username);
+			socket.emit("message", {
+				event: "connection",
+				username: username.value,
+				id: Date.now(),
+			});
+		}
 	};
 
 	const sendMessage = async () => {
-		const message = {
-			username: username.value,
-			message: value.value,
-			id: Date.now(),
-			event: "message",
-		};
-		socket.emit("message", message);
-		value.value = "";
+		if (valueInput.value !== "") {
+			const message = {
+				username: username.value,
+				message: valueInput.value,
+				id: Date.now(),
+				event: "message",
+			};
+			socket.emit("message", message);
+			valueInput.value = "";
+		}
 	};
-
-	return { messages, value, username, connected, connect, sendMessage };
+	return { messages, valueInput, username, connected, connect, sendMessage };
 });
