@@ -10,6 +10,7 @@ export const useChatStore = defineStore("chatStore", () => {
 	const valueInput = ref("");
 	const username = ref("");
 	const connected = ref(false);
+	const chatInfoPressBtn = ref(false);
 
 	socket.on("message", (msg) => {
 		messages.value.push(msg);
@@ -18,7 +19,7 @@ export const useChatStore = defineStore("chatStore", () => {
 	const connect = () => {
 		if (username.value !== "") {
 			connected.value = true;
-			console.log(username);
+
 			socket.emit("message", {
 				event: "connection",
 				username: username.value,
@@ -39,5 +40,22 @@ export const useChatStore = defineStore("chatStore", () => {
 			valueInput.value = "";
 		}
 	};
-	return { messages, valueInput, username, connected, connect, sendMessage };
+
+	const pressChatInfoBtn = () => {
+		chatInfoPressBtn.value = !chatInfoPressBtn.value;
+	};
+
+	return {
+		valueInput,
+		username,
+
+		connected,
+		connect,
+
+		chatInfoPressBtn,
+		pressChatInfoBtn,
+
+		messages,
+		sendMessage,
+	};
 });
